@@ -1,2 +1,292 @@
-# Auto detect text files and perform LF normalization
-* text=auto
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<meta name="author" content="John Michael Tubiera">
+	<meta name="description" content="Eminence is a spiel/script and  generator for BPO services">
+	<title>Eminence MkII</title>
+	<style>
+		* { margin: 0; padding: 0; }
+		body { color: #666; font-family: Helvetica, Arial, sans-serif; }
+		header { background-color: #1497cc; color: #fff; height: 40px; width: 100%; position: fixed; }
+		p { margin-top: 5px; }
+		header a { text-decoration: none; color: #fff; font-weight: bold; font-size: 20px;}
+		header h1 { text-align: center; text-transform: uppercase; }
+		header sub { font-size: 16px; margin-left: -5px; font-weight: 300; }
+        
+		.app-container { min-width: 260px; max-width: 260px; margin: 0 auto; display: flex; padding: 60px 12px; float: left;}
+		.chat-field-one h2{ font-size: 16px; font-weight: 300; color: #1497cc; }
+		.column-one { width: 220px; text-align: center; margin: 0 auto; }
+		.chat-field-one, .chat-field-two { background-color: #ececec; padding: 10px; border-radius: 5px; }
+		input { border: 1px solid #ccc; padding: 3px; text-align: center; margin-top: 5px; }
+		button#genOutputOne, button#genOutputTwo { display: block; box-shadow: 1px 1px 5px #666; height: 25px; width: 140px; border: none; color: #fff; background-color: #1497cc; margin: 10px 30px; cursor: pointer;  }
+		button#genOutputOne:hover, button#genOutputTwo:hover { background-color: rgb(255, 53, 53); transition: .1s ease background-color; }
+		table { margin: 20px 0 0 0; }
+		table, table tr { font-size: 12px; }
+		table td:hover { background-color: rgb(255, 53, 53); color: #fff; transition: .1s ease color; }
+		.case-template-one { background-color: #ececec; margin-top: 15px; text-align: left; font-size: 14px; padding: 10px; border-radius: 5px; }
+		.copy-to-clipboard-one, .copy-to-clipboard-two { cursor: pointer; margin-top: 20px; border: none; background-color: #fff; padding: 5px; text-align: center; background-color: #1497cc; color: #fff; margin: 10px 30px; width: 140px; height: 25px; box-shadow: 1px 1px 5px #666; }
+	.copy-to-clipboard-one:hover, .copy-to-clipboard-two:hover { background-color: rgb(255, 53, 53); transition: .1s ease background-color; }
+        #case-template-one { background-color: #1497cc; color: #fff; margin-top: 15px; text-align: left; font-size: 14px; padding: 10px; border-radius: 5px; }
+        
+        
+// Style for 2ndDiv;
+        
+        * { margin: 0; padding: 0; }
+		body { color: #666; font-family: Helvetica, Arial, sans-serif; }
+		header { background-color: #1497cc; color: #fff; height: 40px; width: 100%; position: fixed; }
+		p { margin-top: 5px; }
+		header a { text-decoration: none; color: #fff; font-weight: bold; font-size: 20px;}
+		header h1 { text-align: center; text-transform: uppercase; }
+		header sub { font-size: 16px; margin-left: -5px; font-weight: 300; }
+        
+        .app-container2ndDiv { min-width: 260px; max-width: 260px; margin: 0 auto; display: flex; padding: 60px 12px; float: right;}
+		.chat-field-one h2{ font-size: 16px; font-weight: 300; color: #1497cc; }
+		.column-one2ndDiv { width: 220px; text-align: center; margin: 0 auto; }
+		.chat-field-one2ndDiv, .chat-field-two2ndDiv { background-color: #ececec; padding: 10px; border-radius: 5px; }
+		input { border: 1px solid #ccc; padding: 3px; text-align: center; margin-top: 5px; }
+		button#genOutputOne2ndDiv, button#genOutputTwo2ndDiv { display: block; box-shadow: 1px 1px 5px #666; height: 25px; width: 140px; border: none; color: #fff; background-color: #021e29; margin: 10px 30px; cursor: pointer;  }
+		button#genOutputOne2ndDiv:hover, button#genOutputTwo2ndDiv:hover { background-color: rgb(255, 53, 53); transition: .1s ease background-color; }
+		table { margin: 20px 0 0 0; }
+		table, table tr { font-size: 12px; }
+		table td:hover { background-color: rgb(255, 53, 53); color: #fff; transition: .1s ease color; }
+		.case-template-one2ndDiv { background-color: #ececec; margin-top: 15px; text-align: left; font-size: 14px; padding: 10px; border-radius: 5px; }
+		.copy-to-clipboard-one2ndDiv, .copy-to-clipboard-two2ndDiv { cursor: pointer; margin-top: 20px; border: none; background-color: #fff; padding: 5px; text-align: center; background-color: #1c2f36; color: #fff; margin: 10px 30px; width: 140px; height: 25px; box-shadow: 1px 1px 5px #666; }
+	.copy-to-clipboard-one2ndDiv:hover, .copy-to-clipboard-two2ndDiv:hover { background-color: rgb(255, 53, 53); transition: .1s ease background-color; }
+        #case-template-one2ndDiv { background-color: #021e29; color: #fff; margin-top: 15px; text-align: left; font-size: 14px; padding: 10px; border-radius: 5px; }
+        
+    }
+	</style>
+</head>
+<body>
+
+	<header>
+		<h1><a href="#">Eminence <sub>MkI</sub></a></h1>
+	</header>
+
+	<div class="app-container">
+
+		<div class="column-one">
+
+			<div class="chat-field-one">
+					<input type="text" id="banInputOne" name="banInputOne" placeholder="BAN">
+					<input type="text" id="techNameInputOne" name="techNameInputOne" placeholder="Tech Name">
+					<input type="text" id="techIdInputOne" name="techIdInputOne" placeholder="Tech ID">
+					<input type="text" id="custNameInputOne" name="custNameInputOne" placeholder="Cust Name">
+					<input type="text" id="issueInputOne" name="issueInputOne" placeholder="Issue">
+					<input type="text" id="resoInputOne" name="resoInputOne" placeholder="Resolution">
+					<button id="genOutputOne" name="genOutputOne">G</button>
+			</div>
+			<!-- END OF CHAT FIELD -->
+
+			<table border=1>
+				<td>Opening</td>
+					<tr>
+						<td>Thank you for contacting the Technician Exception Center - Escalations. My name is John with ATTUID jt6837.</td>
+					</tr>
+				<td>Confirmation</td>
+					<tr>
+						<td>Can we confirm if this is for customer <span id="custNameOutputOne" style="font-weight: bold;">Customer Name</span> with the BAN: <span id="banOutputOne" style="font-weight: bold;">100002275</span> please?</td>
+					</tr>
+				<td>Assist</td>
+					<tr>
+						<td>Thanks for the information, I'll be glad to assist you with that.</td>
+					</tr>
+				<td>Misc</td>
+					<tr>
+						<td>I hope I was able to assist you with regards to today's concern.</td>
+					</tr>
+				<td>Pre-closing</td>
+					<tr>
+						<td>Aside from this will there be anything else that I can assist you with today?</td>
+					</tr>
+				<td>Closing</td>
+					<tr>
+						<td><span id="techNameOutputOne" style="font-weight: bold;">Tech</span>, thank you for contacting the TEC Field Services.</td>
+					</tr>
+			</table>
+			<!-- END OF SPIELS TABLE -->
+            
+<!-- I change the div class to div ID -->
+			<div id="case-template-one" onclick="copyDivToClipboard( )">
+                <button class="copy-to-clipboard-one">Click to Copy</button>                
+				<p>BAN: <span id="banOutputOneCase" style="font-weight: bold;"></span></p>
+				<p>Tech ID: <span id="techIdOutputOne"></span></p>
+				<p>Tech Name: <span id="techNameOutputOneCase"></span></p>
+				<p>Issue: <span id="issueOutputOne"></span></p>
+				<p>Resolution: <span id="resoOutputOne"></span></p>				
+			</div>
+
+		</div>
+		<!-- END OF FIRST COLUMN -->
+
+	</div>
+	<!-- END OF APPLICATION CONTAINER -->
+
+<!-- scrip for Copy -->
+    
+<script>
+    function copyDivToClipboard() {
+        var range = window.getSelection().getRangeAt(0);
+        range.selectNode(document.getElementById("case-template-one"));
+        window.getSelection().addRange(range);
+        document.execCommand("copy")
+    }
+</script>
+    
+    
+	<script>
+
+		/* Generate Scripts for Chat Field One */
+
+		document.getElementById('genOutputOne').addEventListener('click', function() {
+
+			/* Stores content from the selected HTML element onto a JS variable */
+
+			// Input
+			var banInputOne = document.getElementById('banInputOne').value;
+			var techNameInputOne = document.getElementById('techNameInputOne').value;
+			var techIdInputOne = document.getElementById('techIdInputOne').value;
+			var custNameInputOne = document.getElementById('custNameInputOne').value;
+			var issueInputOne = document.getElementById('issueInputOne').value;
+			var resoInputOne = document.getElementById('resoInputOne').value;
+
+			// Output
+			var banOutputOne = document.getElementById('banOutputOne');
+			var custNameOutputOne = document.getElementById('custNameOutputOne');
+			var techNameOutputOne = document.getElementById('techNameOutputOne');
+			var techIdOutputOne = document.getElementById('techIdOutputOne');
+			var issueOutputOne = document.getElementById('issueOutputOne');
+			var resoOutputOne = document.getElementById('resoOutputOne');
+
+			// End Result
+			banOutputOne.innerHTML = banInputOne;
+			techIdOutputOne.innerHTML = techIdInputOne;
+			custNameOutputOne.innerHTML = custNameInputOne;
+			techNameOutputOne.innerHTML = techNameInputOne;
+			issueOutputOne.innerHTML = issueInputOne;
+			resoOutputOne.innerHTML = resoInputOne;
+			banOutputOneCase.innerHTML = banInputOne;
+			techNameOutputOneCase.innerHTML = techNameInputOne;
+
+		});
+
+
+	</script>
+
+<!-- start of 2nd DIV -->
+	
+    
+    <div class="app-container2ndDiv">
+
+		<div class="column-one2ndDiv">
+
+			<div class="chat-field-one2ndDiv">
+					<input type="text" id="banInputOne2ndDiv" name="banInputOne2ndDiv" placeholder="BAN">
+					<input type="text" id="techNameInputOne2ndDiv" name="techNameInputOne2ndDiv" placeholder="Tech Name">
+					<input type="text" id="techIdInputOne2ndDiv" name="techIdInputOne2ndDiv" placeholder="Tech ID">
+					<input type="text" id="custNameInputOne2ndDiv" name="custNameInputOne2ndDiv" placeholder="Cust Name">
+					<input type="text" id="issueInputOne2ndDiv" name="issueInputOne2ndDiv" placeholder="Issue">
+					<input type="text" id="resoInputOne2ndDiv" name="resoInputOne2ndDiv" placeholder="Resolution">
+					<button id="genOutputOne2ndDiv" name="genOutputOne2ndDiv">G</button>
+			</div>
+			<!-- END OF CHAT FIELD -->
+
+			<table border=1>
+				<td>Opening</td>
+					<tr>
+						<td>Thank you for contacting the Technician Exception Center - Escalations. My name is John with ATTUID jt6837.</td>
+					</tr>
+				<td>Confirmation</td>
+					<tr>
+						<td>Can we confirm if this is for customer <span id="custNameOutputOne2ndDiv" style="font-weight: bold;">Customer Name</span> with the BAN: <span id="banOutputOne2ndDiv" style="font-weight: bold;">100002275</span> please?</td>
+					</tr>
+				<td>Assist</td>
+					<tr>
+						<td>Thanks for the information, I'll be glad to assist you with that.</td>
+					</tr>
+				<td>Misc</td>
+					<tr>
+						<td>I hope I was able to assist you with regards to today's concern.</td>
+					</tr>
+				<td>Pre-closing</td>
+					<tr>
+						<td>Aside from this will there be anything else that I can assist you with today?</td>
+					</tr>
+				<td>Closing</td>
+					<tr>
+						<td><span id="techNameOutputOne2ndDiv" style="font-weight: bold;">Tech</span>, thank you for contacting the TEC Field Services.</td>
+					</tr>
+			</table>
+			<!-- END OF SPIELS TABLE -->
+
+			<div id="case-template-one2ndDiv" onclick="copyDivToClipboard2ndDiv( )">
+                <button class="copy-to-clipboard-one2ndDiv">Copy</button>
+				<p>BAN: <span id="banOutputOneCase2ndDiv" style="font-weight: bold;"></span></p>
+				<p>Tech ID: <span id="techIdOutputOne2ndDiv"></span></p>
+				<p>Tech Name: <span id="techNameOutputOneCase2ndDiv"></span></p>
+				<p>Issue: <span id="issueOutputOne2ndDiv"></span></p>
+				<p>Resolution: <span id="resoOutputOne2ndDiv"></span></p>				
+			</div>
+                
+		</div>
+		<!-- END OF FIRST COLUMN -->
+
+	</div>
+	<!-- END OF APPLICATION CONTAINER -->
+    
+<script>
+    function copyDivToClipboard2ndDiv() {
+        var range = window.getSelection().getRangeAt(0);
+        range.selectNode(document.getElementById("case-template-one2ndDiv"));
+        window.getSelection().addRange(range);
+        document.execCommand("copy")
+    }
+</script>
+    
+	<script>
+
+		/* Generate Scripts for Chat Field One */
+
+		document.getElementById('genOutputOne2ndDiv').addEventListener('click', function() {
+
+			/* Stores content from the selected HTML element onto a JS variable */
+
+			// Input 2ndDiv
+			var banInputOne2ndDiv = document.getElementById('banInputOne2ndDiv').value;
+			var techNameInputOne2ndDiv = document.getElementById('techNameInputOne2ndDiv').value;
+			var techIdInputOne2ndDiv = document.getElementById('techIdInputOne2ndDiv').value;
+			var custNameInputOne2ndDiv = document.getElementById('custNameInputOne2ndDiv').value;
+			var issueInputOne2ndDiv = document.getElementById('issueInputOne2ndDiv').value;
+			var resoInputOne2ndDiv = document.getElementById('resoInputOne2ndDiv').value;
+
+			// Output 2ndDiv
+			var banOutputOne2ndDiv = document.getElementById('banOutputOne2ndDiv');
+			var custNameOutputOne2ndDiv = document.getElementById('custNameOutputOne2ndDiv');
+			var techNameOutputOne2ndDiv = document.getElementById('techNameOutputOne2ndDiv');
+			var techIdOutputOne2ndDiv = document.getElementById('techIdOutputOne2ndDiv');
+			var issueOutputOne2ndDiv = document.getElementById('issueOutputOne2ndDiv');
+			var resoOutputOne2ndDiv = document.getElementById('resoOutputOne2ndDiv');
+
+			// End Result 2ndDiv
+			banOutputOne2ndDiv.innerHTML = banInputOne2ndDiv;
+			techIdOutputOne2ndDiv.innerHTML = techIdInputOne2ndDiv;
+			custNameOutputOne2ndDiv.innerHTML = custNameInputOne2ndDiv;
+			techNameOutputOne2ndDiv.innerHTML = techNameInputOne2ndDiv;
+			issueOutputOne2ndDiv.innerHTML = issueInputOne2ndDiv;
+			resoOutputOne2ndDiv.innerHTML = resoInputOne2ndDiv;
+			banOutputOneCase2ndDiv.innerHTML = banInputOne2ndDiv;
+			techNameOutputOneCase2ndDiv.innerHTML = techNameInputOne2ndDiv;
+
+            
+    }
+		});
+
+
+	</script>       
+    
+    
+</body>
+</html>
